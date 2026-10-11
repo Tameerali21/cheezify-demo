@@ -16,7 +16,7 @@
     tagline: qs.get('tagline') || 'Karachi's Pasta Kitchen',
     city:    qs.get('city')    || 'Karachi',
     address: qs.get('addr') || qs.get('address') || 'Karachi, Pakistan',
-    phone:   qs.get('phone')   || '0319-2457608',
+    phone:   qs.get('phone')   || '',
     host: 'Cheezy'
   };
   // short ref prefix from the name's initials, e.g. "Cheezify" -> "CV", "Rose & Rye" -> "RR"
@@ -263,16 +263,17 @@
 
   /* ---------- intent answers ---------- */
   function hoursHtml() {
-    return '<b>We\'re open:</b><br>Mon&ndash;Thu &middot; 11 AM &ndash; 10 PM<br>' +
+    return '<b>We\'re open:</b><br>Mon&ndash;Thu &middot; 12 PM &ndash; 10 PM<br>' +
       'Fri&ndash;Sat &middot; 11 AM &ndash; 11 PM<br>Sun &middot; 10 AM &ndash; 9 PM <i>(brunch 10&ndash;2)</i><br><br>' +
       'Kitchen closes 30 min before we do. Want me to grab you a table?';
   }
 
   function menuHtml() {
-    return 'Cheesy pasta, made fresh every day. &#127837;<br><br>' +
-      '<b>Guest favorites:</b><br>&middot; Chicken Alfredo Pasta &mdash; Rs. 850<br>' +
-      '&middot; Chicken Fajita Pasta &mdash; Rs. 795<br>&middot; Creamy Mushroom Pasta &mdash; Rs. 750<br>' +
-      '&middot; Chicken Fajita Pasta &mdash; Rs. 795<br>&middot; Spicy Peri Peri Pasta &mdash; Rs. 895<br><br>' +
+    return 'Build your own pasta bowl &mdash; <b>Rs. 799</b>. &#127837;<br><br>' +
+      '<b>Step 1 &mdash; Pick a shape:</b> Penne, Fettuccine, Elbow<br>' +
+      '<b>Step 2 &mdash; Pick chicken:</b> Grilled or Crispy with Cheese<br>' +
+      '<b>Step 3 &mdash; Pick a sauce:</b> Classic Alfredo or Mushroom White Sauce<br>' +
+      '&middot; Classic Alfredo bowl &mdash; Rs. 799<br>&middot; + Extra Cheese &mdash; Rs. 100<br><br>' +
       'Plenty of <b>vegan</b> and <b>gluten-free</b> options too. Anything catching your eye?';
   }
 
@@ -466,16 +467,16 @@
         [{ label: '&#128197; Place an order' }]);
     }
     if (has(t, 'hour', 'open', 'close', 'when do you', 'what time')) return say(hoursHtml(), [{ label: '&#128197; Place an order' }]);
-    if (has(t, 'menu', 'pasta', 'food', 'dish', 'hungry', 'alfredo', 'fajita', 'spicy', 'spice') || /\beat\b/.test(t)) return say(menuHtml(), [{ label: '&#128197; Place an order' }]);
-    if (has(t, 'price', 'cost', 'how much', 'expensive', 'cheap', '$$')) return say('Easy on the wallet &mdash; most pastas run <b>Rs. 750&ndash;Rs. 950</b>. Dinner for two usually lands around <b>Rs. 1,800&ndash;Rs. 2,200</b>. &#127837;', [{ label: '&#128203; See the menu' }]);
-    if (has(t, 'deliver', 'takeout', 'take out', 'to go', 'uber eat', 'doordash')) return say('Yes &mdash; <b>delivery across Karachi</b>, ready in about 30-40 minutes. Order right here and I\'ll have the kitchen fire it up. Which area should I deliver to?', [{ label: '&#128203; See the menu' }]);
+    if (has(t, 'menu', 'pasta', 'food', 'dish', 'hungry', 'alfredo', 'bowl', 'shape', 'sauce', 'build') || /\beat\b/.test(t)) return say(menuHtml(), [{ label: '&#128197; Place an order' }]);
+    if (has(t, 'price', 'cost', 'how much', 'expensive', 'cheap', '$$')) return say('Easy on the wallet &mdash; a regular build-your-own bowl is <b>Rs. 799</b> &mdash; and your <b>first order gets 10% OFF</b>. Add-ons: extra cheese Rs. 100, extra chicken Rs. 200. &#127837;', [{ label: '&#128203; See the menu' }]);
+    if (has(t, 'deliver', 'takeout', 'take out', 'to go', 'uber eat', 'doordash')) return say('Yes &mdash; <b>delivery across Karachi</b> right to your doorstep (charges depend on your area). Every bowl is made fresh &mdash; ready in about <b>30&ndash;45 minutes</b>. Tell me your area and I\'ll start your bowl!', [{ label: '&#128203; See the menu' }]);
     if (has(t, 'vegan')) return say('Yes! Our <b>creamy mushroom pasta</b> (Rs. 750) and <b>veggie alfredo</b> (Rs. 795) are vegetarian &mdash; and most dishes can be made vegan on request. &#129382;', [{ label: '&#128197; Place an order' }]);
     if (has(t, 'vegetarian')) return say('Plenty! <b>Creamy mushroom pasta</b> (Rs. 750) and <b>white sauce veggie pasta</b> (Rs. 695) are vegetarian favorites. &#127803;', [{ label: '&#128197; Place an order' }]);
     if (has(t, 'gluten')) return say('Most of our menu is <b>gluten-free</b> &mdash; just ask for gluten-free pasta. Just mention it and the kitchen takes care of the rest.', [{ label: '&#128197; Place an order' }]);
-    if (has(t, 'human', 'person', 'real person', 'call you', 'phone number', 'speak to')) return say('Of course &mdash; call us at <b>' + escapeHtml(BIZ.phone) + '</b> during open hours and a real human picks up. But honestly? I can handle <b>orders, menus, and delivery</b> right here, even at 2 AM. &#128521;', defaultChips());
+    if (has(t, 'human', 'person', 'real person', 'call you', 'phone number', 'speak to')) return say('Of course &mdash; DM us at <b>@thecheezify</b> any time &mdash; that\'s how all orders work here. But honestly? I can handle <b>orders, menus, and delivery</b> right here, even at 2 AM. &#128521;', defaultChips());
     if (has(t, 'thank', 'thanks', 'thx', 'great', 'awesome', 'perfect')) return say('Anytime! That\'s what I\'m here for. &#127790;', defaultChips());
     if (has(t, 'bye', 'goodbye', 'see you', 'later')) { S.mode = 'idle'; return say('See you soon at ' + escapeHtml(BIZ.name) + '! Bring an appetite. &#127790;'); }
-    if (/\b(hi+|hello|hey+|yo)\b/.test(t) || has(t, 'good morning', 'good evening')) return say('Hey hey! &#128075; What can I do for you &mdash; <b>menu</b>, <b>hours</b>, or shall I <b>place an order</b>?', defaultChips());
+    if (/\b(hi+|hello|hey+|yo)\b/.test(t) || has(t, 'good morning', 'good evening')) return say('Hey hey! &#128075; Let\'s build your pasta bowl &mdash; <b>menu</b>, <b>prices</b>, or <b>delivery</b>?', defaultChips());
     if (has(t, 'no thanks', 'not now', 'nope', "i'm good", 'im good')) { S.mode = 'idle'; return say('No worries at all! I\'m here whenever you need me. &#127790;', defaultChips()); }
 
     /* graceful fallback — never dead-ends */
