@@ -290,7 +290,7 @@
     greeted = true;
     return say(
       'Hi there! I\'m <b>' + escapeHtml(BIZ.host) + '</b>, ' + escapeHtml(BIZ.name) + '\'s host. &#127790;<br><br>' +
-      'Ask me about the <b>menu</b> or <b>hours</b> &mdash; or I can <b>book you a table</b> right now. What sounds good?',
+      'Ask me about the <b>menu</b>, <b>prices</b> &mdash; or let\'s <b>build your bowl</b> right now. What sounds good?',
       defaultChips()
     );
   }
