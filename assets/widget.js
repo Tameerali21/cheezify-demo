@@ -13,7 +13,7 @@
   /* ---------- business profile (personalizable via ?biz= etc.) ---------- */
   var BIZ = {
     name:    qs.get('biz')     || 'Cheezify',
-    tagline: qs.get('tagline') || 'Karachi's Pasta Kitchen',
+    tagline: qs.get("tagline") || "Karachi's Pasta Kitchen",
     city:    qs.get('city')    || 'Karachi',
     address: qs.get('addr') || qs.get('address') || 'Karachi, Pakistan',
     phone:   qs.get('phone')   || '',
