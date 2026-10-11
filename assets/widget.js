@@ -272,7 +272,7 @@
     return 'Cheesy pasta, made fresh every day. &#127837;<br><br>' +
       '<b>Guest favorites:</b><br>&middot; Chicken Alfredo Pasta &mdash; Rs. 850<br>' +
       '&middot; Chicken Fajita Pasta &mdash; Rs. 795<br>&middot; Creamy Mushroom Pasta &mdash; Rs. 750<br>' +
-      '&middot; Chipotle Chicken Bowl &mdash; $15<br>&middot; Queso Fundido &mdash; $11<br><br>' +
+      '&middot; Chicken Fajita Pasta &mdash; Rs. 795<br>&middot; Spicy Peri Peri Pasta &mdash; Rs. 895<br><br>' +
       'Plenty of <b>vegan</b> and <b>gluten-free</b> options too. Anything catching your eye?';
   }
 
@@ -470,8 +470,8 @@
     if (has(t, 'price', 'cost', 'how much', 'expensive', 'cheap', '$$')) return say('Easy on the wallet &mdash; most pastas run <b>Rs. 750&ndash;Rs. 950</b>. Dinner for two usually lands around <b>Rs. 1,800&ndash;Rs. 2,200</b>. &#127837;', [{ label: '&#128203; See the menu' }]);
     if (has(t, 'deliver', 'takeout', 'take out', 'to go', 'uber eat', 'doordash')) return say('Yes &mdash; <b>delivery across Karachi</b>, ready in about 30-40 minutes. Order right here and I\'ll have the kitchen fire it up. Which area should I deliver to?', [{ label: '&#128203; See the menu' }]);
     if (has(t, 'vegan')) return say('Yes! Our <b>creamy mushroom pasta</b> (Rs. 750) and <b>veggie alfredo</b> (Rs. 795) are vegetarian &mdash; and most dishes can be made vegan on request. &#129382;', [{ label: '&#128197; Place an order' }]);
-    if (has(t, 'vegetarian')) return say('Plenty! <b>Queso fundido</b> ($11), <b>verde enchiladas</b> ($16, ask veggie-style), and our <b>street corn</b> ($7) are all vegetarian. &#127803;', [{ label: '&#128197; Place an order' }]);
-    if (has(t, 'gluten')) return say('Most of our menu is <b>gluten-free</b> &mdash; everything on corn tortillas, plus all bowls and salads. Just mention it and the kitchen takes care of the rest.', [{ label: '&#128197; Place an order' }]);
+    if (has(t, 'vegetarian')) return say('Plenty! <b>Creamy mushroom pasta</b> (Rs. 750) and <b>white sauce veggie pasta</b> (Rs. 695) are vegetarian favorites. &#127803;', [{ label: '&#128197; Place an order' }]);
+    if (has(t, 'gluten')) return say('Most of our menu is <b>gluten-free</b> &mdash; just ask for gluten-free pasta. Just mention it and the kitchen takes care of the rest.', [{ label: '&#128197; Place an order' }]);
     if (has(t, 'human', 'person', 'real person', 'call you', 'phone number', 'speak to')) return say('Of course &mdash; call us at <b>' + escapeHtml(BIZ.phone) + '</b> during open hours and a real human picks up. But honestly? I can handle <b>orders, menus, and delivery</b> right here, even at 2 AM. &#128521;', defaultChips());
     if (has(t, 'thank', 'thanks', 'thx', 'great', 'awesome', 'perfect')) return say('Anytime! That\'s what I\'m here for. &#127790;', defaultChips());
     if (has(t, 'bye', 'goodbye', 'see you', 'later')) { S.mode = 'idle'; return say('See you soon at ' + escapeHtml(BIZ.name) + '! Bring an appetite. &#127790;'); }
